@@ -70,7 +70,8 @@ However, we first need to find the best subset of features to get the highest ac
 
 Strategy:  After we get the importance values from the initial model with all features, we retrain a new model with the most important features only, adding more in each iterations. We then keep the subset that achieves the highest accuracy as optimal and compare their resulting accuracy with the other models. We lastly do a stratified test to get the average accuracy for the best model.
 
-###WITH missing data:
+### WITH missing data:
+
 We tried using the Histogram Gradient Boosting Classifier as a model, similar to the XGBoost but capable of working with missing values.
 
 Once again, we first need to find the best subset of features to get the highest accuracy possible. 
