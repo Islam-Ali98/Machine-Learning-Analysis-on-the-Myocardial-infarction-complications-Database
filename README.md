@@ -1,7 +1,9 @@
 # Machine-Learning-Analysis-on-the-Myocardial-infarction-complications-Database
-###GOAL
+### GOAL
+
 Build a highly-interpretable predictive model for a specific complication to help medical professionals that have available only the data of the patient’s entry at the hospital.
-###dataset
+### dataset
+
 The provided dataset has a multitude of medical measurements (columns) for a number of patients (rows) that where taken to hospital with a myocardial disease.  All patients were observed for three days, having measurements at four possible moments: entry to hospital, end of day 1, end of day 2 and end of day 3. The last columns code the appearance or not of a set of possible complications and the lethal outcome for each patient.
 
 We are given a dataset with 124 columns and 1700 rows.
@@ -11,7 +13,8 @@ Column 124 is the lethal outcome where the value zero implies the patient is ali
 
 We choose to only work towards the prediction of one of the possible complications.
 
-###Approaching missing values
+### Approaching missing values
+
 After checking the dataset, we see that most columns have missing values, in percentages between 1% and 96%. This obviously makes the analysis more complicated, since we need to find an appropriate strategy to deal with the missingness.
 
 Assumption: Our data is Missing Completely At Random (MCAR). This means that there is no correlation between the missingness of any value and the other values in each row or column. This assumption logically holds since all our feature columns (used for prediction) are medical history, test results or drug dosage, so the value of one should not have any affect on whether another will be missing.
@@ -39,7 +42,8 @@ Conclusion: Densities remain close to original
 
 For this reason, we will try to use some special model that can deal with classification while retaining missing data.
 
-###Feature reduction/Model choice:
+### Feature reduction/Model choice:
+
 Problem:  We want to make an interpretable model but we have 100 features available as measurements from the time of entry alone
 	Solution: Find an effective way to reduce the features used without sacrificing accuracy.
 
@@ -52,7 +56,8 @@ Once again, we have 2 scenarios of models, based on the missing values handling:
 With imputed data
 With missing values
 
-###WITH imputed data:
+### WITH imputed data:
+
 We tried four different models:
 Decision Tree Classifier
 Random Forest Classifier
@@ -74,14 +79,16 @@ In this case however, we extract the importance by a permutation method:  We mix
 
 Strategy:  After we get the importance values from the initial model with all features, we retrain a new model with the most important features only.  We lastly do a stratified test to get the average accuracy.
 
-###Interpretation:
+### Interpretation:
+
 Other features of importance:
 If the ECG rhythm is sinus with heart rate above 90
 Appearance of exertional angina pectoris in the anamnesis
 Coronary heart disease (CHD) in recent weeks, days before admission to hospital
 Presence of a lateral myocardial infarction (left ventricular)
 
-###Conclusions:
+### Conclusions:
+
 Our analysis and results heavily rely on how we deal with missing data.
 An accurate medical history is vital for prediction tasks.
 In the case of imputed data, lab results seem to be more important predictors for this specific complication, compared to ECG measurements
